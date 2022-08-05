@@ -1,0 +1,38 @@
+name: pages deployment
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.9]
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        persist-credentials: false
+# first set up python
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+# then execute the actual build process
+    - name: Compile github pages.
+      run: |
+        pip install markdown
+        cd /home/runner/work/oa_data/oa_data/
+        mkdir -p ./build
+        python "./scripts/build_github_page.py" "./" "./build/"
+# prevent jekyll
+    - name: prevent jekyll
+      run: touch /home/runner/work/oa_data/oa_data/build/.nojekyll
+# deploy to github pages
+    - name: deploy documentation
+      uses: JamesIves/github-pages-deploy-action@v4.3.3
+      with:
+        branch: gh-pages
+        folder: /home/runner/work/oa_data/oa_data/build/
+        single-commit: true
+
