@@ -49,11 +49,13 @@ Depending on the field and representation used, they are also known under differ
 
 ### Evolutionary Algorithms (EAs)
 
-Evolutionary Algorithms (EAs) maintain a population of solutions.
+Evolutionary Algorithms ([EAs](https://thomasweise.github.io/moptipy/moptipy.algorithms.so.html#module-moptipy.algorithms.so.ea)) maintain a population of solutions.
 They start with a population of `mu` random solutions.
 In each iteration, they keep the `mu` best solutions in the population.
 Then they create `lambda` new solutions by applying search operators to them and add them to the population.
 
+- [`jssp_ea_no_binary_swap2.tar.xz`](jssp/jssp_ea_no_binary_swap2.tar.xz): The results of an Evolutionary Algorithm ([EA](https://thomasweise.github.io/moptipy/moptipy.algorithms.so.html#module-moptipy.algorithms.so.ea)) using the [operator `swap2`](https://thomasweise.github.io/moptipy/moptipy.operators.permutations.html#module-moptipy.operators.permutations.op1_swap2) that swaps two (different) job IDs and no binary operator.
+  56.2&nbsp;MB packed, 239.9&nbsp;MB unpacked.
 
 ## License
 
